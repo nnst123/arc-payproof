@@ -18,8 +18,9 @@ The app has no account database or custody service. The contract has no admin wi
 - `contracts/src/ArcPayProof.sol`: onchain invoice and payment logic
 - `contracts/test/ArcPayProof.t.sol`: Arc Foundry contract tests
 - `web/`: React, TypeScript and Vite app
-- `scripts/sync-abi.mjs`: regenerates the frontend ABI from the compiled contract
-- `contracts/script/deploy.sh`: chain-checked, interactive testnet/mainnet deployment
+- `scripts/sync-abi.mjs`: regenerates the frontend ABI and local deployment bytecode from the compiled contract
+- `web/deploy.html`: local-only, MetaMask-signed Arc Testnet deployment page
+- `contracts/script/deploy.sh`: advanced interactive command-line deployment fallback
 - `DEPLOYMENT.md`: wallet, validation, publication and submission checklist
 - `docs/superpowers/`: project design and implementation plan
 
@@ -39,11 +40,11 @@ cp .env.example .env.local
 npm run dev
 ```
 
-On Windows PowerShell, use `Copy-Item .env.example .env.local` instead of `cp`.
+On Windows PowerShell, use `Copy-Item .env.example .env.local` instead of `cp`. For a testnet deployment without exporting a private key, open `/deploy.html` on the local URL printed by Vite in the Chrome or Edge profile where MetaMask is installed. The deployment page is deliberately absent from the production build.
 
 Set `VITE_ARC_NETWORK` to `testnet` or `mainnet` and set `VITE_CONTRACT_ADDRESS` to a deployed contract on that network. The frontend requires an injected browser wallet such as MetaMask or Rabby for transactions. A visitor can inspect an existing invoice without connecting a wallet.
 
-After changing the Solidity ABI, compile and regenerate `web/src/contract/abi.ts`:
+After changing the Solidity contract, compile and regenerate the ABI and deployment bytecode:
 
 ```sh
 cd contracts

@@ -16,18 +16,33 @@ invoice amount. Keep mainnet funding minimal.
 ## 2. Deploy on testnet
 
 Install the official [Arc Foundry release](https://docs.arc.io/arc/tutorials/deploy-on-arc)
-in WSL, with `arc-forge` and `arc-cast` on your PATH. In `contracts/`, run:
+in WSL, with `arc-forge` on your PATH. Compile and test in `contracts/`, then
+regenerate the web deployment bytecode from the same artifact:
 
 ```sh
 arc-forge test --network arc
-sh script/deploy.sh testnet
+arc-forge build --network arc
+cd ..
+node scripts/sync-abi.mjs
 ```
 
-The script checks the chain ID before starting. Arc Foundry asks for the
-signing key interactively; do not paste it into a chat or shell command. Save
-the printed contract address and transaction hash. Check them in the
-[Arc Testnet explorer](https://explorer.testnet.arc.io/), then put the address
-in `web/.env.local` with `VITE_ARC_NETWORK=testnet` and run the web app.
+In `web/`, run `npm ci` and `npm run dev`. Open the local URL printed by Vite,
+adding `/deploy.html`, in the Chrome or Edge profile where MetaMask is
+installed. For example, if Vite prints `http://127.0.0.1:5173/`, open
+`http://127.0.0.1:5173/deploy.html`. The page is **local and testnet-only**;
+it does not appear in the public production build.
+
+Connect MetaMask, switch to Arc Testnet, and fund that public wallet address
+through the Circle Faucet. Refresh the balance and fee estimate. Click the
+deployment button only after checking the wallet address, network and final
+fee shown by MetaMask. The wallet signs the transaction without exporting a
+private key. If the page times out after receiving a transaction hash, check
+that hash before trying anything else; the page can resume receipt checking
+after a refresh. Save the verified contract address and transaction hash, check
+them in the [Arc Testnet explorer](https://explorer.testnet.arc.io/), then put
+the address in `web/.env.local` with `VITE_ARC_NETWORK=testnet` and restart
+the web app. The advanced `contracts/script/deploy.sh testnet` command remains
+available, but it prompts for a private key and is not the beginner workflow.
 
 Complete a small two-wallet invoice and verify that the recipient balance
 increases by the invoice amount, the invoice is marked paid, and the payment
@@ -37,17 +52,13 @@ retrying; a transaction may have succeeded even if the page timed out.
 
 ## 3. Deploy on mainnet
 
-Use a dedicated wallet funded with a small amount of native USDC. Before
-signing, check the official RPC, chain ID, destination, and expected gas cost.
-In `contracts/`, run:
-
-```sh
-sh script/deploy.sh mainnet
-```
-
-The script requires an explicit `DEPLOY MAINNET` confirmation before Arc
-Foundry prompts for the signing key. Record the deployed address, deployment
-transaction, and block number. Verify code exists at that address on
+Do not use the testnet-only browser page for mainnet. After the two-wallet
+testnet flow succeeds, prepare a separately reviewed mainnet signing route;
+do not export a MetaMask private key merely to use the command-line fallback.
+Use a dedicated wallet funded with a small amount of native USDC. Before each
+mainnet signature, check the official RPC, chain ID, destination and expected
+gas cost. Record the deployed address, transaction and block number. Verify
+code exists at that address on
 [Arc Mainnet explorer](https://explorer.arc.io/). Set
 `VITE_ARC_NETWORK=mainnet` and `VITE_CONTRACT_ADDRESS` to this real address.
 Create and pay one public 0.01 USDC demo invoice with two dedicated wallets.

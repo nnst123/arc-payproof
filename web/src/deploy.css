@@ -1,0 +1,22 @@
+.deploy-intro { max-width: 720px; padding: 65px 0 42px; }
+.deploy-intro h1 { margin: 16px 0; font: 600 clamp(42px, 5vw, 70px)/1.03 'Space Grotesk', sans-serif; letter-spacing: -.06em; }
+.deploy-intro p { max-width: 620px; color: #a9bac6; line-height: 1.7; font-size: 15px; }
+.deploy-panel { min-height: 530px; }
+.deploy-facts { margin-bottom: 24px; padding: 10px 20px; border: 1px solid #3c6070; border-radius: 12px; background: #10283a; }
+.deploy-facts .invoice-row:not(:last-child) { border-bottom: 1px solid #28485a; }
+.deploy-panel > .button-wide { margin-top: 16px; }
+.deploy-panel .form-message a { color: #a2f1db; }
+.deploy-result { margin-top: 28px; padding: 22px; border: 1px solid #476c78; border-radius: 12px; background: #112f3e; }
+.deploy-hash { margin: 12px 0 0; color: #e4f3f4; font: 500 12px/1.7 'DM Mono', monospace; overflow-wrap: anywhere; user-select: all; }
+.deploy-result .refresh-button { display: block; }
+.deploy-success { margin-top: 25px; padding-top: 22px; border-top: 1px solid #456d75; }
+.deploy-success h3 { margin: 0; color: #a2f1db; font: 600 18px 'Space Grotesk', sans-serif; }
+.deploy-success .field-help { margin-bottom: 0; }
+.deploy-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.deploy-footer-note { padding: 28px 0 45px; text-align: center; color: #7e9ba9; font: 500 11px 'DM Mono', monospace; }
+
+@media (max-width: 600px) {
+  .deploy-intro { padding: 45px 0 30px; }
+  .deploy-facts { padding: 8px 15px; }
+  .deploy-actions .button { flex: 1; }
+}
