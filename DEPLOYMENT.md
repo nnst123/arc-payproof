@@ -4,6 +4,13 @@ The app is not live until a contract is deployed, a public site is published,
 and a real mainnet invoice has been created and paid. Never send a private key
 or seed phrase to a collaborator, chat, issue, or Git commit.
 
+Arc Testnet deployment verified: contract
+[`0x560e19FEf776FF5480ED048e93fC3bDe47e304F5`](https://explorer.testnet.arc.io/address/0x560e19FEf776FF5480ED048e93fC3bDe47e304F5),
+[transaction `0xb6d2f46a5539b4cc3fdc022758a958f95ec8e489462589aef1727ba3647f5fd2`](https://explorer.testnet.arc.io/tx/0xb6d2f46a5539b4cc3fdc022758a958f95ec8e489462589aef1727ba3647f5fd2).
+The transaction succeeded, creation bytecode matched this repository, deployed
+code exists, and `nextInvoiceId()` returned `1`. The local web app is now
+configured to use this testnet contract.
+
 ## 1. Prepare a dedicated wallet
 
 Use a new wallet only for this demo. Keep its recovery phrase offline. Add Arc

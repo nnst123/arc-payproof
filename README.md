@@ -2,7 +2,7 @@
 
 Arc PayProof is an open-source proof of concept for one-time USDC invoices on Arc. A seller creates an invoice, shares its link, and receives a direct payout when the buyer pays. The invoice status and payment receipt can be verified onchain.
 
-**Status:** Contract and web app are under local development. No public testnet or mainnet deployment has been claimed yet.
+**Status:** The contract is deployed and verified on Arc Testnet. The public mainnet deployment, live site and two-wallet payment demo are still pending.
 
 ## How it works
 
@@ -57,7 +57,13 @@ For a local two-account contract integration check, start `arc-anvil --network a
 
 ## Deployments
 
-Deployment addresses and a public example invoice will be added after testnet and mainnet verification. Arc network parameters must be checked against the [official Arc connection guide](https://docs.arc.io/arc/references/connect-to-arc) before deployment.
+The Arc Testnet deployment is verified:
+
+- Contract: [`0x560e19FEf776FF5480ED048e93fC3bDe47e304F5`](https://explorer.testnet.arc.io/address/0x560e19FEf776FF5480ED048e93fC3bDe47e304F5)
+- Deployment transaction: [`0xb6d2f46a5539b4cc3fdc022758a958f95ec8e489462589aef1727ba3647f5fd2`](https://explorer.testnet.arc.io/tx/0xb6d2f46a5539b4cc3fdc022758a958f95ec8e489462589aef1727ba3647f5fd2)
+- Chain ID: `5042002`. The transaction succeeded, its creation bytecode matches `web/src/contract/deployment.ts`, code exists at the address, and `nextInvoiceId()` returned `1` before the first invoice.
+
+A public example invoice will be added after the payment flow is tested. Arc network parameters must be checked against the [official Arc connection guide](https://docs.arc.io/arc/references/connect-to-arc) before mainnet deployment.
 
 Follow [DEPLOYMENT.md](DEPLOYMENT.md) for the step-by-step release checklist.
 
