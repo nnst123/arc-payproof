@@ -2,7 +2,7 @@
 
 Arc PayProof is an open-source proof of concept for one-time USDC invoices on Arc. A seller creates an invoice, shares its link, and receives a direct payout when the buyer pays. The invoice status and payment receipt can be verified onchain.
 
-**Status:** The contract is deployed and verified on Arc Testnet. The public mainnet deployment, live site and two-wallet payment demo are still pending.
+**Status:** The Arc Testnet contract and two-wallet payment demo are verified. Mainnet deployment and the public site are still pending.
 
 ## How it works
 
@@ -62,8 +62,10 @@ The Arc Testnet deployment is verified:
 - Contract: [`0x560e19FEf776FF5480ED048e93fC3bDe47e304F5`](https://explorer.testnet.arc.io/address/0x560e19FEf776FF5480ED048e93fC3bDe47e304F5)
 - Deployment transaction: [`0xb6d2f46a5539b4cc3fdc022758a958f95ec8e489462589aef1727ba3647f5fd2`](https://explorer.testnet.arc.io/tx/0xb6d2f46a5539b4cc3fdc022758a958f95ec8e489462589aef1727ba3647f5fd2)
 - Chain ID: `5042002`. The transaction succeeded, its creation bytecode matches `web/src/contract/deployment.ts`, code exists at the address, and `nextInvoiceId()` returned `1` before the first invoice.
+- Test invoice #1: [`0.01` test USDC created](https://explorer.testnet.arc.io/tx/0x7c86302d5472f7063e724b01eebd3d9b6b55d299cbaae4ebd22e343f4e74d4bf) with the public description `Arc PayProof demo`.
+- Payment: [a second wallet paid invoice #1](https://explorer.testnet.arc.io/tx/0x0dd01a707477a424be6378e5eb3240dc6e6d0b7c1fc537cb4025236bddfdae4f). The invoice state is `Paid`, the page shows the payment transaction, and the recipient's native USDC balance rose by exactly `0.01` in block `65981883`.
 
-A public example invoice will be added after the payment flow is tested. Arc network parameters must be checked against the [official Arc connection guide](https://docs.arc.io/arc/references/connect-to-arc) before mainnet deployment.
+A public mainnet example invoice will be added after the mainnet payment flow is tested. Arc network parameters must be checked against the [official Arc connection guide](https://docs.arc.io/arc/references/connect-to-arc) before deployment.
 
 Follow [DEPLOYMENT.md](DEPLOYMENT.md) for the step-by-step release checklist.
 

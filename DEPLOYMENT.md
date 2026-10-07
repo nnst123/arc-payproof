@@ -11,6 +11,12 @@ The transaction succeeded, creation bytecode matched this repository, deployed
 code exists, and `nextInvoiceId()` returned `1`. The local web app is now
 configured to use this testnet contract.
 
+The two-wallet testnet flow is complete. [Invoice #1 was created](https://explorer.testnet.arc.io/tx/0x7c86302d5472f7063e724b01eebd3d9b6b55d299cbaae4ebd22e343f4e74d4bf)
+for `0.01` test USDC and [paid by a second account](https://explorer.testnet.arc.io/tx/0x0dd01a707477a424be6378e5eb3240dc6e6d0b7c1fc537cb4025236bddfdae4f).
+The contract reports status `Paid`, the page displays the receipt link, and
+the recipient balance increased by exactly `0.01` native USDC in payment block
+`65981883`.
+
 ## 1. Prepare a dedicated wallet
 
 Use a new wallet only for this demo. Keep its recovery phrase offline. Add Arc
